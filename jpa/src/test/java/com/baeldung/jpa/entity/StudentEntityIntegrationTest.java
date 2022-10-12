@@ -11,9 +11,13 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 public class StudentEntityIntegrationTest {
 
@@ -45,9 +49,11 @@ public class StudentEntityIntegrationTest {
         clearThePersistenceContext();
         var studentsList = getStudentsFromTable();
 
+        log.info("");
         log.info("Loaded students:");
         log.info("----------------");
         studentsList.forEach(st -> log.info(st.toString()));
+        log.info("");
 
         checkAssertionsWith(studentsList);
     }
@@ -55,6 +61,9 @@ public class StudentEntityIntegrationTest {
     private Student createStudentWithRelevantDetails() {
         Student student = new Student();
         student.setName("John");
+        student.setAge(20);  // transient, won't be saved
+        student.setBirthDate(getDate());
+        student.setGender(Student.Gender.MALE);
         return student;
     }
 
@@ -73,10 +82,17 @@ public class StudentEntityIntegrationTest {
     private void checkAssertionsWith(List<Student> students) {
         assertEquals(1, students.size());
         Student john = students.get(0);
-        assertEquals(john.getName(), "John");
+        assertEquals(1L, john.getId().longValue());
+        assertEquals("John", john.getName());
+        assertNull(john.getAge());
     }
 
     private void clearThePersistenceContext() {
         em.clear();
+    }
+
+    private Date getDate() {
+        LocalDate localDate = LocalDate.of(2008, 7, 20);
+        return Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
     }
 }
