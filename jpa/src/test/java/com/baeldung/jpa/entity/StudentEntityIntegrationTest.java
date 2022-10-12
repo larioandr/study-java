@@ -28,7 +28,7 @@ public class StudentEntityIntegrationTest {
 
     @Before
     public void setup() {
-        emf = Persistence.createEntityManagerFactory("entityPU");
+        emf = Persistence.createEntityManagerFactory("basicBaeldungPU");
         em = emf.createEntityManager();
     }
 
