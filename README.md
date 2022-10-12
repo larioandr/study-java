@@ -1,2 +1,6 @@
-# study-baeldung-jpa
-Examples and exercices from JPA tutorial by Baedung at https://www.baeldung.com/learn-jpa-hibernate
+# study-java
+
+Examples and exercices devoted to learning JAVA
+
+- baeldung-jpa: excellent tutorial from https://www.baeldung.com/learn-jpa-hibernate
+
