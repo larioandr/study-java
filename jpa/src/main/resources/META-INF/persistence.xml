@@ -43,6 +43,11 @@
 
     <persistence-unit name="jpwhSimplePU">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <mapping-file>jpwh/simple/Queries.xml</mapping-file>
+        <class>com.jpwh.model.simple.Address</class>
+        <class>com.jpwh.model.simple.Bid</class>
+        <class>com.jpwh.model.simple.Category</class>
+        <class>com.jpwh.model.simple.Item</class>
         <class>com.jpwh.model.simple.User</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <properties>

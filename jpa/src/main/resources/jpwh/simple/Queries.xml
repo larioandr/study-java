@@ -1,0 +1,7 @@
+<entity-mappings>
+    <entity class="com.jpwh.model.simple.Item" name="Item">
+        <named-query name="findItems">
+            <query>SELECT i FROM Item i</query>
+        </named-query>
+    </entity>
+</entity-mappings>
